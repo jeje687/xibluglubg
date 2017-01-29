@@ -1,13 +1,10 @@
-var express = require('express')
-var app = express()
+var express = require('express');
+var app = express();
 
-app.set('port', (process.env.PORT || 5000))
-app.use(express.static(__dirname + '/public'))
+app.get('/', function (req, res) {
+  res.send('Hello World!');
+});
 
-app.get('/', function(request, response) {
-  response.status(200).send('Hello World!')
-})
-
-app.listen(app.get('port'), function() {
+app.listen(process.env.OPENSHIFT_NODEJS_PORT || 5000, function() {
   console.log("Node app is running at localhost:" + app.get('port'))
 })
