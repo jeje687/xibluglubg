@@ -5,6 +5,8 @@ app.get('/', function (req, res) {
   res.send('Hello World!');
 });
 
-app.listen(process.env.OPENSHIFT_NODEJS_PORT || 5000, function() {
-  console.log("Node app is running at localhost:" + app.get('port'))
-})
+var port = process.env.OPENSHIFT_NODEJS_PORT || 8080
+var ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1'
+server.listen(port, ip_address, function () {
+  console.log( "Listening on " + ip_address + ", port " + port )
+});
